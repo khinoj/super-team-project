@@ -32,14 +32,16 @@ function getCurrencyRates() {
         redirect: 'follow',
         headers: myHeaders
     };
-
-    fetch("https://api.apilayer.com/fixer/latest?base=USD", requestOptions)
+    console.log(requestOptions)
+    fetch("https://api.apilayer.com/fixer/latest?base=USD&symbols=EUR,JPY,AED", requestOptions)
         .then(
             function (response) { return (response.json()) }
         )
         .then(
             function (result) {
                 document.getElementById("aed").innerHTML = result.rates.AED;
+                document.getElementById("JPY").innerHTML = result.rates.JPY;
+                document.getElementById("EUR").innerHTML = result.rates.EUR;
             }
         )
         .catch(function (error) {
@@ -47,3 +49,4 @@ function getCurrencyRates() {
         })
 }
 getCurrencyRates();
+
