@@ -1,3 +1,4 @@
+// defines global variables
 let clientIp;
 let base = localStorage.getItem('base');
 let country = localStorage.getItem('country');
@@ -13,7 +14,7 @@ function getBase() {
     }
     
 }
-
+// api for country
 function getCountry() {
     if (country == null) {
         $.get('https://ipapi.co/country_name', function (data) {
@@ -28,7 +29,7 @@ function getCountry() {
     }
 
 }
-
+// function using api for live currency rates displayed on table
 function getCurrencyRates() {
 
     fetch("https://api.exchangerate.host/latest?base=" + base + "&symbols=GBP,JPY,CAD,USD,EUR&amount=1")
@@ -50,6 +51,7 @@ function getCurrencyRates() {
 }
 // getCurrencyRates();
 
+//function using api for user to select from a list of currencies, enter an amount to convert, and convert to another currency
 function convertCurrency() {
     let amount = document.getElementById("amount").value;
     let from = document.getElementById("from").value;
@@ -62,6 +64,7 @@ function convertCurrency() {
         .then(
             function (response) { return (response.json()) }
         )
+            // displays result to page
         .then(
             function (result) {
                 document.getElementById("resultAmount").innerHTML = amount + " " + from + " = " + result.result + " " + to;
