@@ -5,19 +5,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+  <!-- added a title describing the webpage -->
+  <title>Currency Converter</title>
+  <!-- links to Tailwind: the styling library we used -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- links our CSS stylesheet -->
   <link rel="stylesheet" href="assets/css/style.css">
+  <!--links for api-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
   <!-- navbar starts -->
+  <!-- styling added via Tailwind within HTML -->
+ <header>
   <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
       <a href="#" class="flex items-center">
+        <!-- this is the logo image for the header -->
         <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 mr-3 sm:h-9" alt=" Logo" />
-        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">DailyForex</span>
+        <span class="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">World Currencies</span>
       </a>
       <button data-collapse-toggle="navbar-default" type="button"
         class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -28,14 +35,21 @@
       <div class="hidden w-full md:block md:w-auto" id="navbar-default">
         <ul
           class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <!-- first part of nav directs to table of popular live currency rates -->
           <li>
-            <a href="#" class="block py-2 pl-3 pr-4 text-gray-500 rounded hover:text-gray-700 bg-gray-100"
-              aria-current="page">Home</a>
+            <a href="#popular" class="block py-2 pl-3 pr-4 text-gray-500 rounded hover:text-gray-700 bg-gray-100"
+              aria-current="page">Popular Live Rates</a>
+              </li>
+             <!-- second part of nav directs to currency converter at bottom of the page -->
+             <li><a href="#convert" class="block py-2 pl-3 pr-4 text-gray-500 rounded hover:text-gray-700 bg-gray-100"
+              aria-current="page">Convert Currency</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+  </header>
+  <!-- ends nav bar -->
 
   <main class="container-fluid mb-4 flex flex-col">
     <!-- main wrapper -->
@@ -48,16 +62,20 @@
     <!-- banner row ends -->
 
     <!-- content Heading -->
+    <!--begins table section that provides popular live currency rates against the US Dollar-->
     <section class=" m-auto mt-4 pt-4 bg-gray-100 rounded mx-4 w-full flex flex-col">
-      <h1 class="text-2xl mt-4 font-bold mx-auto text-center">
+      <h1 id= "popular" class="text-2xl mt-4 font-bold mx-auto text-center">
         <span id="countryName"></span> Live Exchange Rates
       </h1>
       <p class="mx-auto text-center">Check live foreign currency exchange rates</p>
       <table class="ratesTable">
+        <!--labels for the 'country' and 'amount' collums on table-->
         <tr>
           <th class="text-center w-6/12">Country</th>
           <th class="text-center">Amount</th>
         </tr>
+        <!--the following are popular currencies within the table-->
+        <!--the ids for each currency pull data from API to provide the user with the live exchange rate -->
         <tr>
           <td>British Pound</td>
           <td id="gbp"></td>
@@ -80,27 +98,35 @@
         </tr>
       </table>
     </section>
+    <!--popular live currency rate table ends-->
 
+    <!--manual currency converter section begin-->
     <section class=" m-auto mt-4 pt-20 pb-20 pt-4 bg-gray-100 rounded mx-4 w-full flex flex-col">
-      <h1 class="text-2xl mt-4 font-bold mx-auto text-center">
+      <h2 id="convert" class="text-2xl mt-4 font-bold mx-auto text-center">
         Convert Currency
-      </h1>
+      </h2>
+      <!--styles the section-->
       <div class="pt-4 m-auto">
         <form class="w-full max-w-lg">
           <div class="flex flex-wrap -mx-3 mb-2">
             <div class="w-full md:w-1/5 px-3 mb-6 md:mb-0">
+              <!--styles the amount label-->
               <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
                 Amount
               </label>
+              <!--adds the input area where user can enter a value to convert between currencies-->
+              <!--adds a placeholder within the input field to read '100'-->
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="amount" type="text" placeholder="100">
             </div>
+            <!--labels first drop down menu 'from' which is the currency the user will convert from-->
             <div class="w-full md:w-40 px-3 mb-6 md:mb-0">
               <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
                 From
               </label>
               <div class="relative">
+                <!--first drop down menu; includes all of the currencies the user can choose to convert a value from-->
                 <select
                   class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="from">
@@ -278,10 +304,12 @@
               </div>
             </div>
             <div class="w-full md:w-40 px-3 mb-6 md:mb-0">
+              <!--adds the label 'to'; this is the currency the user can choose to convert a value to-->
               <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                 To
               </label>
               <div class="relative">
+                <!--second drop down menu; includes all of the currencies the user can choose to convert a value to -->
                 <select
                   class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="to">
@@ -459,6 +487,7 @@
               </div>
             </div>
             <div class="w-full md:w-1/5 px-3 mb-6 md:mb-0 flex justify-center">
+              <!--adds a button with an 'onclick' function to make a call to convert the currency; see javaScript file as well-->
               <button
                 class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-3 px-4 border border-gray-400 rounded shadow self-end"
                 type="button" onclick="convertCurrency()">
@@ -468,13 +497,14 @@
           </div>
         </form>
       </div>
+      <!--displays the result of the currency conversion-->
       <div class="flex justify-center mt-4 ">
         <h3 class="text-2xl font-bold text-center"><span id="resultAmount"></span></h3>
       </div>
     </section>
   </main>
   <!-- main wrapper -->
-
+<!--links javaScript file-->
   <script src="assets/js/script.js"></script>
 </body>
 
